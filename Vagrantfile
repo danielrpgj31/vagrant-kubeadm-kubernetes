@@ -10,13 +10,13 @@ IP_START = Integer(IP_SECTIONS.captures[1])
 NUM_WORKER_NODES = settings["nodes"]["workers"]["count"]
 
 Vagrant.configure("2") do |config|
-  config.vm.provision "shell", env: { "IP_NW" => IP_NW, "IP_START" => IP_START, "NUM_WORKER_NODES" => NUM_WORKER_NODES }, inline: <<-SHELL
-      apt-get update -y
-      echo "$IP_NW$((IP_START)) master-node" >> /etc/hosts
-      for i in `seq 1 ${NUM_WORKER_NODES}`; do
-        echo "$IP_NW$((IP_START+i)) worker-node0${i}" >> /etc/hosts
-      done
-  SHELL
+
+
+  #Configurações personalizadas para o disco SSD externo
+  #config.vm.provider "virtualbox" do |vb|
+  #  vb.customize ['createhd', '--filename', '/media/danielrpgj/Seagate Expansion Drive/machines/storage/vagrant_k8s_master/minha_maquina.vdi', '--size', '80480']
+  #  vb.customize ['storageattach', :id, '--storagectl', 'SATA Controller', '--port', 0, '--device', 0, '--type', 'hdd', '--medium', '/media/danielrpgj/Seagate Expansion Drive/machines/storage/vagrant_k8s_master/minha_maquina.vdi']
+  #end
 
   if `uname -m`.strip == "aarch64"
     config.vm.box = settings["software"]["box"] + "-arm64"
@@ -40,6 +40,15 @@ Vagrant.configure("2") do |config|
           vb.customize ["modifyvm", :id, "--groups", ("/" + settings["cluster_name"])]
         end
     end
+
+    master.vm.provision "shell", env: { "IP_NW" => IP_NW, "IP_START" => IP_START, "NUM_WORKER_NODES" => NUM_WORKER_NODES }, inline: <<-SHELL
+      apt-get update -y
+      echo "$IP_NW$((IP_START)) master-node" >> /etc/hosts
+      for i in `seq 1 ${NUM_WORKER_NODES}`; do
+        echo "$IP_NW$((IP_START+i)) worker-node0${i}" >> /etc/hosts
+      done
+    SHELL
+
     master.vm.provision "shell",
       env: {
         "DNS_SERVERS" => settings["network"]["dns_servers"].join(" "),
