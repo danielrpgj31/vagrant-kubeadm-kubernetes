@@ -49,8 +49,6 @@ Vagrant.configure("2") do |config|
           "OS" => settings["software"]["os"]
         },
       path: "scripts/common.sh"
-
-
     end
   end
 end
