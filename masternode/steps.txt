@@ -1,0 +1,35 @@
+$ sudo kubeadm config images pull
+"failed to pull image"
+
+Falha na matriz de suportabilidade K8s x Containerd.
+
+Solução:
+Erro de incompatibilidade de versões, reinstalar produto. 
+
+Instalar docker na versão default do pacote atualizado do ubuntu22
+Instalar K8S na ultima versão do repositorio oficial 
+
+Referencias:
+
+instalações
+https://hbayraktar.medium.com/how-to-install-kubernetes-cluster-on-ubuntu-22-04-step-by-step-guide-7dbf7e8f5f99
+https://www.letscloud.io/community/how-to-install-kubernetesk8s-and-docker-on-ubuntu-2004
+
+versões
+
+https://github.com/containerd/containerd/discussions/8706
+https://github.com/containerd/containerd/blob/v1.7.2/RELEASES.md#kubernetes-support
+
+Kubernetes Version	containerd Version	    CRI Version
+1.24	            1.7.0+, 1.6.4+	        v1, v1alpha2
+1.25	            1.7.0+, 1.6.4+	        v1, v1alpha2**
+1.26	            1.7.0+, 1.6.15+	        v1
+
+
+Containerd Version	        Kubernetes Version	CRI Version
+v1.0 (w/ cri-containerd)	1.7, 1.8, 1.9	    v1alpha1
+v1.1	                    1.10+	            v1alpha2
+v1.2	                    1.10+	            v1alpha2
+v1.3	                    1.12+	            v1alpha2
+v1.4	                    1.19+	            v1alpha2
+v1.5	                    1.20+	            v1 (1.23+), v1alpha2
