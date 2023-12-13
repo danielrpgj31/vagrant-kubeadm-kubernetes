@@ -49,6 +49,10 @@ Vagrant.configure("2") do |config|
           "OS" => settings["software"]["os"]
         },
       path: "scripts/common.sh"
+      
+      #Join 
+      node.vm.provision "shell", path: "scripts/node.sh"
+
     end
   end
 end
