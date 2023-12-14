@@ -23,12 +23,12 @@ nodes:
   workers:
     count: 2
     cpu: 1
-    memory: 2048
+    memory: 4096
 # Mount additional shared folders from the host into each virtual machine.
 # Note that the project directory is automatically mounted at /vagrant.
-# shared_folders:
-#   - host_path: ../images
-#     vm_path: /vagrant/images
+  shared_folders:
+    - host_path: ./configs
+      vm_path: /vagrant/configs
 software:
   box: bento/ubuntu-22.04
   calico: 3.26.0

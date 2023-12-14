@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: node-deployment
+  namespace: curso
 spec:
   replicas: 2
   selector:
@@ -14,7 +15,7 @@ spec:
     spec:
       containers:
       - name: node
-        image: api-rest-nodejs-dummy:latest
+        image: danielribeirojr/api-rest-nodejs-dummy:latest
         ports:
         - containerPort: 7001
 
@@ -24,6 +25,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: nginx-service
+  namespace: curso
 spec:
   selector:
     app: nginx
