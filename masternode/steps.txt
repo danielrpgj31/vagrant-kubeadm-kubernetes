@@ -1,3 +1,8 @@
+Ajustes Instalação do Container com K8S 1.27
+===============================================
+
+### Cenário 1 - Ajustar versão do K8S x CRI-O 
+
 $ sudo kubeadm config images pull
 "failed to pull image"
 
@@ -33,3 +38,16 @@ v1.2	                    1.10+	            v1alpha2
 v1.3	                    1.12+	            v1alpha2
 v1.4	                    1.19+	            v1alpha2
 v1.5	                    1.20+	            v1 (1.23+), v1alpha2
+
+### Cenário 2 - Erro na instalação de CRI-O e CRI-O-RUNC
+
+Derepente começou a falhar na instalação da camada de container (cri-o) durante provisionamento de uma masternode pelo script
+masternode/scripts/common.sh.
+Ao analisar, percebi o erro no handshake do protocolo https durante tentativa de download do arquivo deb associado. 
+
+Solução:
+O pacote de instalação apt está sendo movido. 
+https://kubernetes.io/blog/2023/10/10/cri-o-community-package-infrastructure/
+
+a. Troca do repositório, de acordo com a publicação acima, e a retirada do cri-o-runc, problema resolvido.
+
