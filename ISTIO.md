@@ -1,7 +1,12 @@
-Pre requisitos
+## Instalar prerequisitos - Helm para Instalar ISTIO
 
-1. Aumentar memoria das vms antes
+* Confirmar versões de compatibilidade 
+https://helm.sh/docs/topics/version_skew/
 
-Erros
+* Baixar helm na versao correta para o k8s utilizado
+https://github.com/helm/helm/releases
 
-1. Nao esta recebendo as coletas no jaeguer. Duvida, preciso sensibilizar os serviços com uma chamada em cada?
+* Procedimento de instalação
+https://helm.sh/docs/intro/install/
+
+TODO Instalar no masternode a partir do binario disponibilizado em /vagrant/componentes
