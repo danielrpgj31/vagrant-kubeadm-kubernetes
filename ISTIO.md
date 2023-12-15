@@ -2,6 +2,7 @@
 
 * Confirmar versões de compatibilidade 
 https://helm.sh/docs/topics/version_skew/
+https://istio.io/latest/docs/releases/supported-releases/#support-status-of-istio-releases
 
 * Baixar helm na versao correta para o k8s utilizado
 https://github.com/helm/helm/releases
