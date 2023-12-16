@@ -1,5 +1,5 @@
-Ajustes Instalação do Container com K8S 1.27
-===============================================
+Ajustes Instalação do cri-o com K8S 1.27
+=========================================
 
 ### Cenário 1 - Ajustar versão do K8S x CRI-O 
 
@@ -20,7 +20,7 @@ instalações
 https://hbayraktar.medium.com/how-to-install-kubernetes-cluster-on-ubuntu-22-04-step-by-step-guide-7dbf7e8f5f99
 https://www.letscloud.io/community/how-to-install-kubernetesk8s-and-docker-on-ubuntu-2004
 
-versões
+MATRIZ DE VERSAO PARA CONTAINERD (AO FIM, MANTIVE CRI-O)
 
 https://github.com/containerd/containerd/discussions/8706
 https://github.com/containerd/containerd/blob/v1.7.2/RELEASES.md#kubernetes-support
