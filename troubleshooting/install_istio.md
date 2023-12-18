@@ -39,3 +39,11 @@ $ kubectl events -n istio-system -o json
 
 "message": "0/3 nodes are available: 1 node(s) had untolerated taint {node-role.kubernetes.io/control-plane: }, 2 Insufficient memory
 
+> Problema
+Falta de memória no master. Aumentei para 6GB.
+
+https://discuss.istio.io/t/istiod-installation-fails/7093
+
+
+> Solução
+Ajuste de memória. Inclua mais memória no master node.

@@ -62,3 +62,8 @@ spec:
         image: registry.example.com/my-nginx-image:v1
 
 Isso é um exemplo básico, e você precisará ajustar conforme necessário para o seu aplicativo específico. Certifique-se de entender os princípios do Dockerfile e do Kubernetes YAML para criar imagens e implantá-las com sucesso.
+
+
+## Conclusão
+
+Usei o cri-o mesmo, com crioctl para gerenciar as builds e repositório local de imagens
