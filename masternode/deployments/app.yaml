@@ -24,13 +24,14 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: nginx-service
+  name: api-rest-service
   namespace: curso
 spec:
   selector:
-    app: nginx
+    app: node
   ports:
     - protocol: TCP
-      port: 80
+      port: 7001
       targetPort: 7001
+      nodePort: 32001
   type: NodePort

@@ -9,4 +9,5 @@ spec:
     - protocol: TCP
       port: 7001
       targetPort: 7001
+      nodePort: 7001
   type: NodePort
