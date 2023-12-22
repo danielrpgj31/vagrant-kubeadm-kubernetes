@@ -16,6 +16,7 @@ spec:
       containers:
       - name: node
         image: danielribeirojr/api-rest-nodejs-dummy:latest
+        imagePullPolicy: Always  # Definir imagePullPolicy para Always
         ports:
         - containerPort: 7001
 
