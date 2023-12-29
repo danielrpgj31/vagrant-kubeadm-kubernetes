@@ -34,5 +34,5 @@ spec:
     - protocol: TCP
       port: 7001
       targetPort: 7001
-      nodePort: 32002
+      nodePort: 32001
   type: NodePort
