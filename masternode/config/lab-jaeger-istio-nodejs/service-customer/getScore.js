@@ -2,7 +2,7 @@ const opentracing = require('opentracing')
 const tracer = opentracing.globalTracer()
 
 let counter = 1
-const sayHello = async (req, res) => {
+const getScore = async (req, res) => {
   // You can re-use the parent span to create a child span
   const span = tracer.startSpan('say-hello', { childOf: req.span })
 
@@ -41,4 +41,4 @@ const formatGreetingRemote = async (name, span) => {
   return response
 }
 
-module.exports = sayHello
+module.exports = getScore

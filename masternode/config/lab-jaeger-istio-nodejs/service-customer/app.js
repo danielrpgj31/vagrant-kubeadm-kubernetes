@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 const port = 8080
-const serviceName = process.env.SERVICE_NAME || 'service-a'
+const serviceName = process.env.SERVICE_NAME || 'service-customer'
 
 // Initialize the Tracer
 const tracer = initTracer(serviceName)
@@ -24,8 +24,8 @@ app.get('/error', (req, res) => {
 })
 
 // Using the span inside a route handler
-const hello = require('./hello')
-app.get('/sayHello/:name', hello)
+const getScore = require('./getScore')
+app.get('/getScore/:customerId', getScore)
 
 app.disable('etag')
 app.listen(port, () => console.log(`Service ${serviceName} listening on port ${port}!`))

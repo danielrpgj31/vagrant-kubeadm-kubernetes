@@ -10,7 +10,7 @@ function formatGreeting(req, res) {
   // check the baggage
   const baggage = span.getBaggageItem('my-baggage')
   span.log({ event: 'propagation', message: `this is baggage ${baggage}` })
-  const response = `Hello from service-b ${name}!`
+  const response = `Hello from service-score ${name}!`
   span.finish()
   res.send(response)
 }

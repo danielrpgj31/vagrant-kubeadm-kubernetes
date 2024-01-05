@@ -28,6 +28,6 @@ spec:
             prefix: /sayHello
       route:
         - destination:
-            host: service-a
+            host: service-customer
             port:
               number: 8080

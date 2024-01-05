@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 const port = 8081
-const serviceName = process.env.SERVICE_NAME || 'service-b'
+const serviceName = process.env.SERVICE_NAME || 'service-score'
 
 // Initialize the Tracer
 const tracer = initTracer(serviceName)
