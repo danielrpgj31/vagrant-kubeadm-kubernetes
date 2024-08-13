@@ -7,6 +7,8 @@
 
 ## Implantar infraestrutura com Terraform, automatizando scripts vagrant
 
+
+
 # Prover Aplicações & Arquiteturas 
 
 ## Implantar apps de arquitetura (x e y a definir) utilizando Ansible

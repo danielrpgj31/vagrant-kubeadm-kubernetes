@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: kiali-nodeport
+  namespace: istio-system
+spec:
+  selector:
+    app: kiali
+  ports:
+  - protocol: TCP
+    port: 20001  # Porta do Kiali
+    targetPort: 20001
+    nodePort: 30001  # Escolha uma porta disponível no seu cluster
+  type: NodePort
