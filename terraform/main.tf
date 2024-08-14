@@ -8,6 +8,8 @@ resource "null_resource" "vagrant_vm" {
       # vagrant init hashicorp/bionic64
       cd /home/danielrpgj/dev/src/vagrant-kubeadm-kubernetes/masternode/
       vagrant up
+      # TODO: Implements copy join.sh from master to workernodes
+      # TODO: Implements install workernode k8s and join to server
     EOT
   }
 
