@@ -1,0 +1,12 @@
+Log created: 2024-08-13T13:45:14.652368000Z
+Process ID:  13719 (0x3597)
+Parent PID:  1751 (0x6d7)
+Executable:  /usr/lib/virtualbox/VBoxHeadless
+Arg[0]: /usr/lib/virtualbox/VBoxHeadless
+Arg[1]: --comment
+Arg[2]: masternode_master_1703073724172_13169
+Arg[3]: --startvm
+Arg[4]: 4d6c03b8-3c1f-4d41-afb8-ca3c050126d6
+Arg[5]: --vrde
+Arg[6]: config
+AddRef: illegal refcnt=3221225469 state=2

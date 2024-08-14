@@ -13,7 +13,13 @@ resource "null_resource" "vagrant_vm" {
 
   provisioner "local-exec" {
     when    = destroy
-    command = "vagrant destroy -f"
+    command = <<EOT
+      # vagrant init hashicorp/bionic64
+      cd /home/danielrpgj/dev/src/vagrant-kubeadm-kubernetes/masternode/
+      vagrant destroy -f
+      cd /home/danielrpgj/dev/src/vagrant-kubeadm-kubernetes/workernode/
+      vagrant destroy -f
+    EOT
   }
 }
 
