@@ -19,8 +19,8 @@ resource "null_resource" "vagrant_vm" {
       # vagrant init hashicorp/bionic64
       cd /home/danielrpgj/dev/src/vagrant-kubeadm-kubernetes/masternode/
       vagrant destroy -f
-      cd /home/danielrpgj/dev/src/vagrant-kubeadm-kubernetes/workernode/
-      vagrant destroy -f
+      # cd /home/danielrpgj/dev/src/vagrant-kubeadm-kubernetes/workernode/
+      # vagrant destroy -f
     EOT
   }
 }
