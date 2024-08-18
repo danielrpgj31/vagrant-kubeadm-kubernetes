@@ -42,6 +42,5 @@ sudo chown 1000:1000 /home/vagrant/.kube/config
 EOF
 
 # Install Metrics Server
-
+echo ">>>>>>>>>>>>>>>>>>>> INSTALL METRICS SERVER"
 kubectl apply -f https://raw.githubusercontent.com/techiescamp/kubeadm-scripts/main/manifests/metrics-server.yaml
-
