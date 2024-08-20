@@ -10,6 +10,7 @@ IP_START = Integer(IP_SECTIONS.captures[1])
 NUM_WORKER_NODES = settings["nodes"]["workers"]["count"]
 
 Vagrant.configure("2") do |config|
+  
   config.vm.provision "shell", env: { "IP_NW" => IP_NW, "IP_START" => IP_START, "NUM_WORKER_NODES" => NUM_WORKER_NODES }, inline: <<-SHELL
       apt-get update -y
       echo "$IP_NW$((IP_START)) master-node" >> /etc/hosts
@@ -26,6 +27,7 @@ Vagrant.configure("2") do |config|
   config.vm.box_check_update = true
 
   config.vm.define "master" do |master|
+
     master.vm.hostname = "master-node"
     master.vm.network "private_network", ip: settings["network"]["control_ip"]
     if settings["shared_folders"]
@@ -47,7 +49,7 @@ Vagrant.configure("2") do |config|
         "KUBERNETES_VERSION" => settings["software"]["kubernetes"],
         "OS" => settings["software"]["os"]
       },
-    path: "scripts/common.sh"
+      path: "scripts/common.sh"
 
     master.vm.provision "shell",
       env: {
@@ -56,7 +58,7 @@ Vagrant.configure("2") do |config|
         "POD_CIDR" => settings["network"]["pod_cidr"],
         "SERVICE_CIDR" => settings["network"]["service_cidr"]
       },
-    path: "scripts/master.sh"
+      path: "scripts/master.sh"
 
   end
  
