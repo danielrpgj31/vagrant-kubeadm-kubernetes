@@ -16,8 +16,8 @@ sudo systemctl restart systemd-resolved
 # disable swap
 sudo swapoff -a
 
-# keeps the swap off during reboot
-(crontab -l 2>/dev/null; echo "@reboot /sbin/swapoff -a") | crontab - || true
+# keeps the swap off during reboot (Fail on danielrpgj box - Ubuntu 22.04)
+# (crontab -l 2>/dev/null; echo "@reboot /sbin/swapoff -a") | crontab - || true
 sudo apt-get update -y
 
 VERSION="$(echo ${KUBERNETES_VERSION} | grep -oE '[0-9]+\.[0-9]+')"

@@ -8,7 +8,8 @@ sudo kubeadm init --apiserver-advertise-address=$CONTROL_IP --apiserver-cert-ext
 
 mkdir -p "$HOME"/.kube
 sudo cp -i /etc/kubernetes/admin.conf "$HOME"/.kube/config
-sudo chown "$(id -u)":"$(id -g)" "$HOME"/.kube/config
+#sudo chown "$(id -u)":"$(id -g)" "$HOME"/.kube/config
+sudo chown vagrant:vagrant "$HOME"/.kube/config
 
 # Save Configs to shared /Vagrant location
 
