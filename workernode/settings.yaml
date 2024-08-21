@@ -30,7 +30,7 @@ nodes:
     - host_path: ./configs
       vm_path: /vagrant/configs
 software:
-  box: bento/ubuntu-22.04
+  box: danieljunior/ubuntu.live.server.v2204
   calico: 3.26.0
   # To skip the dashboard installation, set its version to an empty value or comment it out:
   dashboard: 2.7.0

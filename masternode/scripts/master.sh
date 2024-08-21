@@ -38,7 +38,7 @@ sudo -i -u vagrant bash << EOF
 whoami
 mkdir -p /home/vagrant/.kube
 sudo cp -i $config_path/config /home/vagrant/.kube/
-sudo chown 1000:1000 /home/vagrant/.kube/config
+sudo chown vagrant:vagrant /home/vagrant/.kube/config
 EOF
 
 # Install Metrics Server

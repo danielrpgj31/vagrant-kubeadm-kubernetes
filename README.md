@@ -34,3 +34,6 @@ Como ajuste a ser implementado, retirar o apontamento de versão nos pacotes k8s
 
 Branch criado para corrigir o Join do workernode, provisionado pelo terraform. O token não é atualizado com base no masternode, o que gera erro de conectividade no kubeadm join. Coloquei apenas TODOS. 
 
+>> branch b_change_vagrant_box
+
+Branch criado para troca de imagem da box (virtualbox vm) de bento para danielrpgj(minha), que subi no vagrant cloud. Imagem de ubuntu 22.04 live server. 
