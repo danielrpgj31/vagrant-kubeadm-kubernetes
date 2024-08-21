@@ -9,6 +9,18 @@
 
 1) Implantar Istio em K8S
 
+#### Implantar monitoramento de rede Mesh com Kiali 
+
+Seguir os passos do artigo abaixo:
+
+https://istio.io/latest/docs/examples/bookinfo/ (Solução composta por diversos microservicoes em tecnologia distinta para testar diversas funcionalidades do Istio e Kiali)
+
+https://istio.io/latest/docs/tasks/observability/kiali/ (Exemplo de Uso do Kiali como visualizador de rede mesh com informações estatísticas)
+
+https://kiali.io/docs/installation/installation-guide/install-with-helm/ (Instalação Kiali com Helm)
+
+https://istio.io/latest/docs/tasks/observability/distributed-tracing/jaeger/ (Uso do tracing do Jaeger para pegar tempos em uma cadeia de chamadas)
+
 #### Implantar infraestrutura com Terraform, automatizando scripts vagrant
 
 # Prover Aplicações & Arquiteturas 
