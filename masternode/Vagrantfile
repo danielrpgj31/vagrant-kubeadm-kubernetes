@@ -60,6 +60,10 @@ Vagrant.configure("2") do |config|
       },
       path: "scripts/master.sh"
 
+    master.vm.provision "shell",
+      env: {},
+      path: "scripts/helm.sh"
+
   end
  
 end 
