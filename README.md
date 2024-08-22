@@ -23,6 +23,8 @@ https://istio.io/latest/docs/tasks/observability/distributed-tracing/jaeger/ (Us
 
 https://medium.com/opentracing/take-opentracing-for-a-hotrod-ride-f6e3141f7941 (Tutorial Sample OpenTracing with Jaeger)
 
+https://github.com/jaegertracing/jaeger-operator/blob/main/COMPATIBILITY.md (Jaeger Distributed Tracing - Cert Matrix to correct installs)
+
 #### Implantar infraestrutura com Terraform, automatizando scripts vagrant
 
 # Prover Aplicações & Arquiteturas 
