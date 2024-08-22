@@ -21,6 +21,8 @@ https://kiali.io/docs/installation/installation-guide/install-with-helm/ (Instal
 
 https://istio.io/latest/docs/tasks/observability/distributed-tracing/jaeger/ (Uso do tracing do Jaeger para pegar tempos em uma cadeia de chamadas)
 
+https://medium.com/opentracing/take-opentracing-for-a-hotrod-ride-f6e3141f7941 (Tutorial Sample OpenTracing with Jaeger)
+
 #### Implantar infraestrutura com Terraform, automatizando scripts vagrant
 
 # Prover Aplicações & Arquiteturas 
