@@ -4,3 +4,4 @@ Tentativa de instalar o Jaeger, sem considerar a matrix de compatibilidade entre
 https://github.com/jaegertracing/jaeger-operator/blob/main/COMPATIBILITY.md
 
 Agendar nova tentativa, considerando a versão dos produtos
+

@@ -5,6 +5,75 @@
 1) Implantar k8s nos scripts vagrant
 2) Implantar k8s + monitoring nos scripts vagrant
 
+#### Implantar o Helm Package Manager
+
+1) Ver matriz de suportabilidade de versões
+https://helm.sh/docs/topics/version_skew/
+
+K8S 1.28 - Helm 3.13.x
+K8S 1.27 - Helm ?
+
+#### Implantar JAEGER Tracing
+
+Passos
+
+1) Instalar o cert-manager 
+
+a. helm repo add jetstack https://charts.jetstack.io --force-update
+b. helm install \
+  cert-manager jetstack/cert-manager \
+  --namespace cert-manager \
+  --create-namespace \
+  --version v1.15.3 \
+  --set crds.enabled=true
+
+https://cert-manager.io/docs/releases/#kubernetes-supported-versions
+https://cert-manager.io/docs/releases/
+CERT-MANAGER 1.15 ==> K8S 1.24 → 1.30
+
+2) Instalar o Jaeger usando CRDs
+
+a. kubectl create namespace observability
+b. kubectl delete -f https://github.com/jaegertracing/jaeger-operator/releases/download/v1.57.0/jaeger-operator.yaml -n observability 
+c. kubectl create -f https://github.com/jaegertracing/jaeger-operator/releases/download/v1.57.0/jaeger-operator.yaml -n observability 
+
+Respeitar a matrix de compatibilidade 
+- https://github.com/jaegertracing/jaeger-operator/blob/main/COMPATIBILITY.md (Jaeger Distributed Tracing - Cert Matrix to correct installs)
+
+Referencias
+
+- https://medium.com/opentracing/take-opentracing-for-a-hotrod-ride-f6e3141f7941 (Tutorial Sample OpenTracing with Jaeger)
+
+
+3) Instalar o Ingress Controller 
+
+a. helm upgrade --install ingress-nginx ingress-nginx \
+  --repo https://kubernetes.github.io/ingress-nginx \
+  --namespace ingress-nginx --create-namespace
+
+b. kubectl get pods --namespace=ingress-nginx
+
+c. Validação da instalação do Ingress (passo a)
+
+kubectl create deployment demo --image=httpd --port=80
+kubectl expose deployment demo
+
+d. Cria uma ingress resource para roteamento para a app a ser instalada e utilizada pela ingress
+
+kubectl create ingress demo-localhost --class=nginx \
+  --rule="demo.localdev.me/*=demo:80"
+
+e. Configurar uma port forward para a porta do ingress
+
+kubectl port-forward --namespace=ingress-nginx service/ingress-nginx-controller 8080:80
+
+f. Fazer uma requisição para a app utilizando a port forward criada
+
+curl --resolve demo.localdev.me:8080:127.0.0.1 http://demo.localdev.me:8080
+
+Referencia:
+https://kubernetes.github.io/ingress-nginx/deploy/#quick-start
+
 #### Implantar Istio em K8S
 
 1) Implantar Istio em K8S
@@ -21,9 +90,9 @@ https://kiali.io/docs/installation/installation-guide/install-with-helm/ (Instal
 
 https://istio.io/latest/docs/tasks/observability/distributed-tracing/jaeger/ (Uso do tracing do Jaeger para pegar tempos em uma cadeia de chamadas)
 
-https://medium.com/opentracing/take-opentracing-for-a-hotrod-ride-f6e3141f7941 (Tutorial Sample OpenTracing with Jaeger)
 
-https://github.com/jaegertracing/jaeger-operator/blob/main/COMPATIBILITY.md (Jaeger Distributed Tracing - Cert Matrix to correct installs)
+#### Gateways em ambientes Bare Metals (Ingress Controlers)
+https://kubernetes.github.io/ingress-nginx/deploy/baremetal/
 
 #### Implantar infraestrutura com Terraform, automatizando scripts vagrant
 
