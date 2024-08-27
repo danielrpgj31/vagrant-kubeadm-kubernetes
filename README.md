@@ -43,6 +43,7 @@ Respeitar a matrix de compatibilidade
 Referencias
 
 - https://medium.com/opentracing/take-opentracing-for-a-hotrod-ride-f6e3141f7941 (Tutorial Sample OpenTracing with Jaeger)
+- https://github.com/jaegertracing/jaeger-operator (Notas importantes para o treinamento: Configuração do ingress para acessar o Jaeger UI)
 
 
 3) Instalar o Ingress Controller 
@@ -73,6 +74,44 @@ curl --resolve demo.localdev.me:8080:127.0.0.1 http://demo.localdev.me:8080
 
 Referencia:
 https://kubernetes.github.io/ingress-nginx/deploy/#quick-start
+
+4. Deploy do de instância do Jaeger modo allinone 
+
+a. Deploy da instância AllInOne
+
+kubectl apply -n observability -f - <<EOF
+apiVersion: jaegertracing.io/v1
+kind: Jaeger
+metadata:
+  name: simplest
+EOF
+
+b. Validações
+
+kubectl get jaegers -n observability 
+kubectl get pods -l app.kubernetes.io/instance=simplest -n observability
+kubectl get ingress -n observability 
+kubectl get all -n observability 
+
+c. Criação do ingress rule para o Jaeger UI
+
+kubectl delete ingress jaeger-ui-localhost
+
+kubectl create ingress jaeger-ui-localhost --class=nginx \
+  --rule="www.jaeger.ui/*=simplest-query:16686" FAIL - Apontar para o service simplest-query, porta 16686
+
+kubectl create ingress jaeger-ui-localhost --class=nginx \
+  --rule="www.jaeger.ui/*=simplest:16686" 
+
+
+d. Criação do port-forward para o Ingress Controller 
+
+kubectl port-forward --namespace=ingress-nginx service/ingress-nginx-controller 8080:80
+
+kubectl port-forward --namespace=observability service/simplest-query 16686:16686
+
+e. Testa acessibilidade da UI
+curl --resolve www.jaeger.ui:8080:127.0.0.1 http://www.jaeger.ui:8080
 
 #### Implantar Istio em K8S
 
