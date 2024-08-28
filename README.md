@@ -24,7 +24,29 @@ Evita erros de provisionamento do k8s durante aplicação de yamls de deployment
 
 - 15GB disk size
 - 2cpu 
-- 4096 MB memory
+- 4096 MB memorycd
+
+#### Implantar Apps em K8S 
+
+Após testar imagens a partir do 'podman run' e confirmar que a app esta rodando em container CRI-O/PODMAN, fazer o deploy em k8s:
+
+a. Entrar na máquina guest que hospeda o(s) node(s) que executa(m) os containers das apps
+
+b. Fazer o build da imagem das apps envolvidas no treinamento e tagger a imagem para que fique compatível com o YAML de deployment em kubernetes.
+
+c. Fazer deployment da app em kubernetes, criando os pods e demais componentes
+
+d. Testar app
+
+  - Fazer o ssh port forward para acessar a app na porta configurada no container/pod. 
+    ssh -L 8080:localhost:8080 vagrant@192.168.56.102
+
+  - Chamar app no browser da máquina host dos guests
+  http://localhost:8080/sayhello/Ola!
+
+  Erro dentro da app ao chamar o microservico service-b. 
+  TODO: Validar app internamente, entrar no container da app e chamar via curl ou wget. 
+  TODO: Validar externamente via podman run + port-forwarding, chamando via curl ou wget de dentro do guest onde o container esta rodando
 
 #### Implantar JAEGER Tracing (Masternode)
 
