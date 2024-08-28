@@ -5,7 +5,7 @@
 1) Implantar k8s nos scripts vagrant
 2) Implantar k8s + monitoring nos scripts vagrant
 
-#### Implantar o Helm Package Manager
+#### Implantar o Helm Package Manager (Masternode)
 
 1) Ver matriz de suportabilidade de versões
 https://helm.sh/docs/topics/version_skew/
@@ -13,19 +13,45 @@ https://helm.sh/docs/topics/version_skew/
 K8S 1.28 - Helm 3.13.x
 K8S 1.27 - Helm ?
 
-#### Implantar JAEGER Tracing
+#### Setup Podman - Criação de imagens para containers CRI-O
+
+Para rodar as apps usadas no treinamento, devemos realizar o setup do ambiente envolvido:
+
+a. Dimensionamento da máquina host usada para provisionar as vms usadas para os ambientes guests do treinamento. 
+
+Aqui, devemos imaginar o quanto de disk size, memory e cpu devemos alocar na máquina guest virtualbox usada pelo vagrant do treinamento. 
+Evita erros de provisionamento do k8s durante aplicação de yamls de deployment das apps do treinamento. 
+
+- 15GB disk size
+- 2cpu 
+- 4096 MB memory
+
+#### Implantar JAEGER Tracing (Masternode)
 
 Passos
 
 1) Instalar o cert-manager 
 
 a. helm repo add jetstack https://charts.jetstack.io --force-update
+
+Listar todas as versoes de chart instalado no repo:
+
+helm search repo jetstack/cert-manager --versions
+
+Confirmar a versão compatível de acordo com a tabela de matriz de compatibilidade abaixo.
+
 b. helm install \
   cert-manager jetstack/cert-manager \
   --namespace cert-manager \
   --create-namespace \
   --version v1.15.3 \
   --set crds.enabled=true
+
+
+c. Confirmar instalação
+
+helm list -A
+kubectl get pods -n cert-manager
 
 https://cert-manager.io/docs/releases/#kubernetes-supported-versions
 https://cert-manager.io/docs/releases/
