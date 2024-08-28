@@ -54,6 +54,8 @@ Vagrant.configure("2") do |config|
       #Join 
       node.vm.provision "shell", path: "scripts/node.sh", name: "K8S Join"
 
-    end
-  end
+    end #config do node
+  
+  end #loop criação de nodes
+
 end

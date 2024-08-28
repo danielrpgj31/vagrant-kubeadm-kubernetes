@@ -89,29 +89,42 @@ EOF
 b. Validações
 
 kubectl get jaegers -n observability 
-kubectl get pods -l app.kubernetes.io/instance=simplest -n observability
 kubectl get ingress -n observability 
+kubectl get pods -l app.kubernetes.io/instance=simplest -n observability
 kubectl get all -n observability 
 
-c. Criação do ingress rule para o Jaeger UI
+c. Criação do ingress rule para o Jaeger UI 
 
-kubectl delete ingress jaeger-ui-localhost
+obs: Pular este item, o ingress nao esta funcionando. 
+Acesso realizado direto no container da app jaeger ui usando port-forward.
 
-kubectl create ingress jaeger-ui-localhost --class=nginx \
+#kubectl delete ingress jaeger-ui-localhost
+
+#kubectl create ingress jaeger-ui-localhost --class=nginx \
   --rule="www.jaeger.ui/*=simplest-query:16686" FAIL - Apontar para o service simplest-query, porta 16686
 
-kubectl create ingress jaeger-ui-localhost --class=nginx \
+#kubectl create ingress jaeger-ui-localhost --class=nginx \
   --rule="www.jaeger.ui/*=simplest:16686" 
-
 
 d. Criação do port-forward para o Ingress Controller 
 
-kubectl port-forward --namespace=ingress-nginx service/ingress-nginx-controller 8080:80
+obs: Pular este item, o ingress nao esta funcionando. 
+Acesso realizado direto no container da app jaeger ui usando port-forward.
+
+e. Testa acessibilidade da UI
+
+Executar na máquina Guest (Masternode)
 
 kubectl port-forward --namespace=observability service/simplest-query 16686:16686
 
-e. Testa acessibilidade da UI
-curl --resolve www.jaeger.ui:8080:127.0.0.1 http://www.jaeger.ui:8080
+Executar na máquina Host (VirtualBox), ssh port-forward para acesso à UI do Jaeger
+Redirecionar as conexões http na porta local 16686 para a porta 16686 da maquina guest masternode.
+
+ssh -L 16686:localhost:16686 danielrpgj@192.168.56.101
+
+curl http://localhost:16686/
+
+#### Implantar aplicações com instrumentação habilitada para testes
 
 #### Implantar Istio em K8S
 
