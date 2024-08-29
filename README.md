@@ -39,10 +39,10 @@ c. Fazer deployment da app em kubernetes, criando os pods e demais componentes
 d. Testar app
 
   - Fazer o ssh port forward para acessar a app na porta configurada no container/pod. 
-    ssh -L 8080:localhost:8080 vagrant@192.168.56.102
+  ssh -L 8080:localhost:8080 vagrant@192.168.56.102
 
   - Chamar app no browser da máquina host dos guests
-  http://localhost:8080/sayhello/Ola!
+  http://localhost:8080/sayhello/Daniel
 
   Erro dentro da app ao chamar o microservico service-b. 
   TODO: Validar app internamente, entrar no container da app e chamar via curl ou wget. 
@@ -79,7 +79,9 @@ https://cert-manager.io/docs/releases/#kubernetes-supported-versions
 https://cert-manager.io/docs/releases/
 CERT-MANAGER 1.15 ==> K8S 1.24 → 1.30
 
-2) Instalar o Jaeger usando CRDs
+2) Instalar o Jaeger Operator usando CRDs
+
+Pegar a versão correta do jaeger operator e ajustar a url para refletir a versão. 
 
 a. kubectl create namespace observability
 b. kubectl delete -f https://github.com/jaegertracing/jaeger-operator/releases/download/v1.57.0/jaeger-operator.yaml -n observability 
@@ -94,7 +96,7 @@ Referencias
 - https://github.com/jaegertracing/jaeger-operator (Notas importantes para o treinamento: Configuração do ingress para acessar o Jaeger UI)
 
 
-3) Instalar o Ingress Controller 
+3) Instalar o Ingress Controller (nao funcionou, usei port-forward)
 
 a. helm upgrade --install ingress-nginx ingress-nginx \
   --repo https://kubernetes.github.io/ingress-nginx \
@@ -172,13 +174,13 @@ ssh -L 16686:localhost:16686 danielrpgj@192.168.56.101
 
 curl http://localhost:16686/
 
-#### Implantar aplicações com instrumentação habilitada para testes
+#### Implantar aplicações com instrumentação opentelemetry implementadas
 
 #### Implantar Istio em K8S
 
 1) Implantar Istio em K8S
 
-#### Implantar monitoramento de rede Mesh com Kiali 
+2) Implantar monitoramento de rede Mesh com Kiali 
 
 Seguir os passos do artigo abaixo:
 
