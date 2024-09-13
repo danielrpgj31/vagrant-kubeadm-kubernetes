@@ -6,8 +6,8 @@ const sayHello = async (req, res) => {
 
   // simulate a slow request every 3 requests
   setTimeout(async () => {
-    const response = await formatGreeting(name);
-    // const response = await formatGreetingRemote(name, span)
+    //const response = await formatGreeting(name);
+    const response = await formatGreetingRemote(name, span)
     res.send(response)
   }, counter++ % 3 === 0 ? 100 : 0)
 }

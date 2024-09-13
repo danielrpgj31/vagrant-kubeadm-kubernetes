@@ -192,6 +192,10 @@ https://kiali.io/docs/installation/installation-guide/install-with-helm/ (Instal
 
 https://istio.io/latest/docs/tasks/observability/distributed-tracing/jaeger/ (Uso do tracing do Jaeger para pegar tempos em uma cadeia de chamadas)
 
+3) Implantar app para testes de monitoramento e instrumentação 
+
+kubectl apply -f kubernetes-gateway-api.yaml
+kubectl port-forward svc/nodeservices-gateway-istio 8080:80 -n curso
 
 #### Gateways em ambientes Bare Metals (Ingress Controlers)
 https://kubernetes.github.io/ingress-nginx/deploy/baremetal/
