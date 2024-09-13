@@ -24,9 +24,6 @@ spec:
     - path:
         type: Exact
         value: /sayHello
-    - path:
-        type: Exact
-        value: /formatGreeting
     backendRefs:
     - name: service-a
       port: 8080

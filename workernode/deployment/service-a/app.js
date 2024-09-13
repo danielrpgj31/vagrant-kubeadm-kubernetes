@@ -5,11 +5,7 @@ const serviceName = process.env.SERVICE_NAME || 'service-a'
 
 // Initialize the Tracer
 
-
-
-
 // Instrument every incomming request
-
 
 // Let's capture http error span
 app.get('/error', (req, res) => {
@@ -18,7 +14,7 @@ app.get('/error', (req, res) => {
 
 // Using the span inside a route handler
 const hello = require('./hello')
-app.get('/sayHello/:name', hello)
+app.get('/sayHello', hello)
 
 app.disable('etag')
 app.listen(port, () => console.log(`Service ${serviceName} listening on port ${port}!`))

@@ -42,12 +42,9 @@ d. Testar app
   ssh -L 8080:localhost:8080 vagrant@192.168.56.102
 
   - Chamar app no browser da máquina host dos guests
-  http://localhost:8080/sayhello/Daniel
+  http://localhost:8080/sayhello
 
-  Erro dentro da app ao chamar o microservico service-b. 
-  TODO: Validar app internamente, entrar no container da app e chamar via curl ou wget. 
-  TODO: Validar externamente via podman run + port-forwarding, chamando via curl ou wget de dentro do guest onde o container esta rodando
-
+  
 #### Implantar JAEGER Tracing (Masternode)
 
 Passos
@@ -196,6 +193,32 @@ https://istio.io/latest/docs/tasks/observability/distributed-tracing/jaeger/ (Us
 
 kubectl apply -f kubernetes-gateway-api.yaml
 kubectl port-forward svc/nodeservices-gateway-istio 8080:80 -n curso
+
+4) Validação implantação da app em k8s
+kubectl get pods -n curso
+kubectl exec -it <pod-name> -n curso -- /bin/bash
+kubectl exec -it service-a-d95bb9f6f-l29d5 -n curso -- /bin/bash
+
+Inside pod:
+curl <http api to other pods to test internal network>
+curl <http api to local pod to local api infrastructure>
+curl http://localhost:8080/sayHello
+
+5) Configurar kubernetes gateway api 
+
+- Gateway (Porta principal de entrada para a rede mesh)
+
+  kubectl apply -f kubernetes-gateway-api.yaml -n curso (criacao do gateway e httproute da app)
+  kubectl annotate gateway nodeservices-gateway networking.istio.io/service-type=ClusterIP --namespace=curso
+  kubectl get gateway -n curso
+
+- HTTPRoute para rotas da app (rest app)
+
+6) Configurar roteamento da rede do pod para o gateway api (porta principal de entrada para rede mesh)
+
+  Configura porta local do container (8080) -> para -> porta 80 do service do gateway
+
+  kubectl port-forward svc/nodeservices-gateway-istio 8080:80
 
 #### Gateways em ambientes Bare Metals (Ingress Controlers)
 https://kubernetes.github.io/ingress-nginx/deploy/baremetal/

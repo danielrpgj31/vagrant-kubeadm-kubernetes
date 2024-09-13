@@ -1,9 +1,8 @@
 
 let counter = 1
 const sayHello = async (req, res) => {
-  // Parse the handler input
-  const name = req.params.name
-
+  const name = "Dev Alone."
+  const span = req.span
   // simulate a slow request every 3 requests
   setTimeout(async () => {
     //const response = await formatGreeting(name);
@@ -22,7 +21,7 @@ const bent = require('bent')
 const formatGreetingRemote = async (name, span) => {
   const service = process.env.SERVICE_FORMATTER || 'localhost'
   const servicePort = process.env.SERVICE_FORMATTER_PORT || '8081'
-  const url = `http://${service}:${servicePort}/formatGreeting?name=${name}`
+  const url = `http://${service}:${servicePort}/formatGreeting`
   const headers = {}
 
   const request = bent('string', headers)
