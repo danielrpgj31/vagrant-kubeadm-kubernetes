@@ -12,8 +12,8 @@ opentracing.initGlobalTracer(tracer)
 app.use(tracingMiddleWare)
 
 // Using the span inside a route handler
-const refactor = require('./refactor')
-app.get('/refactor', refactor)
+const getfactor = require('./factor')
+app.get('/getfactor', getfactor)
 
 app.disable('etag')
 app.listen(port, () => console.log(`Service ${serviceName} listening on port ${port}!`))

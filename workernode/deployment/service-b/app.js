@@ -12,8 +12,8 @@ opentracing.initGlobalTracer(tracer)
 app.use(tracingMiddleWare)
 
 // Using the span inside a route handler
-const formatter = require('./formatter')
-app.get('/formatGreeting', formatter)
+const factor = require('./factor')
+app.get('/getfactor', factor)
 
 app.disable('etag')
 app.listen(port, () => console.log(`Service ${serviceName} listening on port ${port}!`))
